@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HISTORY ARCHIVE</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ background:#050706;color:#eee;
+ font-family:Arial,Helvetica,sans-serif;
+}
+header{
+ text-align:center;padding:38px 15px;
+ background:#090d0a;border-bottom:2px solid #00ff77;
+ box-shadow:0 4px 25px #00ff7720;
+}
+header h1{
+ color:#00ff77;font-size:clamp(27px,6vw,44px);
+ font-weight:900;letter-spacing:5px;
+ text-shadow:0 0 18px #00ff7770;
+}
+header p{
+ color:#ff3434;font-size:12px;font-weight:800;
+ letter-spacing:4px;margin-top:12px;
+}
+.welcome{
+ padding:75px 20px;text-align:center;
+ background:radial-gradient(ellipse at top,#10251a 0%,#090d0a 48%,#080808 100%);
+ border-bottom:1px solid #252525;
+}
+.welcome h2{
+ color:#00ff77;font-size:clamp(25px,5vw,39px);
+ font-weight:900;letter-spacing:2px;
+ margin-bottom:23px;
+ animation:glow 2s ease-in-out infinite alternate;
+}
+.welcome p{
+ max-width:850px;margin:auto;color:#ddd;
+ font-size:16px;line-height:2;
+}
+.welcome strong{color:#ff4545;letter-spacing:1px}
+@keyframes glow{
+ from{text-shadow:0 0 5px #00ff77}
+ to{text-shadow:0 0 24px #00ff77}
+}
+.section{max-width:1200px;margin:auto;padding:48px 20px}
+.section-title{
+ color:#00ff77;font-size:26px;font-weight:900;
+ letter-spacing:2px;border-left:5px solid #ff3030;
+ padding:8px 0 8px 15px;margin-bottom:27px;
+}
+.category-grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:17px;
+}
+.category{
+ min-height:105px;padding:25px 20px;
+ display:flex;align-items:center;gap:17px;
+ background:linear-gradient(120deg,#101813,#0b0d0b);
+ border:1px solid #245c3b;border-left:5px solid #00ff77;
+ border-radius:8px;cursor:pointer;
+ transition:.25s;
+}
+.category:nth-child(even){border-left-color:#ff3030}
+.category:hover{
+ transform:translateY(-4px);
+ border-color:#00ff77;
+ box-shadow:0 0 20px #00ff7730;
+}
+.number{
+ color:#ff3838;font-size:27px;font-weight:900;
+ min-width:40px;
+}
+.category:nth-child(even) .number{color:#00ff77}
+.category-name{
+ color:#fff;font-size:clamp(14px,2.5vw,19px);
+ font-weight:900;letter-spacing:1px;
+ line-height:1.4;
+}
+.category:hover .category-name{color:#00ff77}
+.search{
+ display:block;width:100%;max-width:650px;
+ padding:16px;margin:10px 0 28px;
+ background:#0d120e;color:white;
+ border:1px solid #00ff77;border-radius:6px;
+ font-size:15px;outline:none;
+}
+.posts{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:22px;
+}
+.post{
+ background:#0d120e;border:1px solid #283c2e;
+ border-radius:9px;overflow:hidden;
+ transition:.25s;
+}
+.post:hover{border-color:#00ff77;box-shadow:0 0 18px #00ff7720}
+.post img,.post video{width:100%;max-height:250px;object-fit:cover}
+.post-body{padding:20px}
+.post-category{
+ color:#ff4949;font-size:12px;font-weight:900;
+ letter-spacing:1.5px;
+}
+.post h3{color:#00ff77;font-size:20px;margin:12px 0}
+.post p{color:#ccc;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}
+.admin{
+ display:none;max-width:900px;margin:30px auto;
+ padding:25px;background:#0d120e;
+ border:1px solid #00ff77;border-radius:9px;
+}
+.admin h2,.admin h3{color:#00ff77;margin-bottom:18px}
+input,textarea,select{
+ display:block;width:100%;padding:14px;margin:12px 0;
+ background:#050706;color:white;border:1px solid #34533c;
+ border-radius:5px;font-size:15px;
+}
+textarea{min-height:130px}
+button{
+ cursor:pointer;
+}
+.btn{
+ padding:13px 20px;margin:5px;
+ background:#00ff77;color:#001508;
+ border:0;border-radius:5px;font-weight:900;
+}
+.btn:hover{background:#ff3838;color:white}
+.manage-item{
+ background:#151d17;padding:16px;margin:12px 0;
+ border-left:3px solid #ff3838;border-radius:5px;
+}
+footer{
+ text-align:center;padding:35px 15px;
+ background:#090d0a;border-top:2px solid #00ff77;
+ color:#aaa;line-height:2;
+}
+@media(max-width:600px){
+ .category-grid{grid-template-columns:1fr}
+ .section{padding:35px 15px}
+ .category{min-height:85px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <h1>HISTORY ARCHIVE</h1>
+ <p>EXPLORE THE PAST · DISCOVER THE TRUTH</p>
+</header>
+
+<section class="welcome">
+ <h2>WELCOME TO HISTORY ARCHIVE</h2>
+ <p>
+ Welcome to History Archive — Your Gateway to the Past.
+ <br><br>
+ Discover the greatest civilizations, legendary leaders,
+ historic battles, forgotten mysteries and world-changing events.
+ <br><br>
+ Explore the stories that shaped our world.
+ Every moment in history has a story worth discovering.
+ <br><br>
+ <strong>THE PAST IS OUR STORY. HISTORY IS OUR LEGACY.</strong>
+ </p>
+</section>
+
+<section class="section">
+ <h2 class="section-title">EXPLORE OUR COLLECTION</h2>
+ <div class="category-grid">
+
+  <div class="category" onclick="showCategory('All')">
+   <span class="number">01</span>
+   <span class="category-name">HOME</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Ancient History')">
+   <span class="number">02</span>
+   <span class="category-name">ANCIENT HISTORY</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Medieval History')">
+   <span class="number">03</span>
+   <span class="category-name">MEDIEVAL HISTORY</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Modern History')">
+   <span class="number">04</span>
+   <span class="category-name">MODERN HISTORY</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Wars & Battles')">
+   <span class="number">05</span>
+   <span class="category-name">WARS & BATTLES</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Historical Figures')">
+   <span class="number">06</span>
+   <span class="category-name">HISTORICAL FIGURES</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Images')">
+   <span class="number">07</span>
+   <span class="category-name">IMAGE GALLERY</span>
+  </div>
+
+  <div class="category" onclick="showCategory('Videos')">
+   <span class="number">08</span>
+   <span class="category-name">VIDEO GALLERY</span>
+  </div>
+
+ </div>
+</section>
+
+<section class="section" id="history">
+ <h2 class="section-title" id="postTitle">LATEST HISTORICAL POSTS</h2>
+ <input class="search" id="search" placeholder="Search historical posts..." oninput="renderPosts()">
+ <div class="posts" id="posts">Loading historical posts...</div>
+</section>
+
+<section class="section" style="text-align:center">
+ <button class="btn" onclick="openAdmin()">ADMIN LOGIN</button>
+</section>
+
+<section class="admin" id="adminPanel">
+ <h2>ADMIN CONTROL PANEL</h2>
+
+ <div id="loginBox">
+  <h3>ADMIN LOGIN</h3>
+  <input id="email" type="email" placeholder="Admin Email">
+  <input id="password" type="password" placeholder="Password">
+  <button class="btn" onclick="login()">LOGIN</button>
+ </div>
+
+ <div id="postBox" style="display:none">
+  <h3>CREATE OR EDIT POST</h3>
+  <input id="postId" type="hidden">
+  <input id="title" placeholder="Post Title">
+
+  <select id="category">
+   <option>Ancient History</option>
+   <option>Medieval History</option>
+   <option>Modern History</option>
+   <option>Wars & Battles</option>
+   <option>Historical Figures</option>
+  </select>
+
+  <textarea id="content" placeholder="Write historical information..."></textarea>
+
+  <select id="mediaType">
+   <option value="text">Text Only</option>
+   <option value="image">Image</option>
+   <option value="video">Video</option>
+  </select>
+
+  <input id="imageUrl" placeholder="Image URL">
+  <input id="videoUrl" placeholder="Video URL">
+
+  <select id="status">
+   <option value="published">Publish Now</option>
+   <option value="draft">Save as Draft</option>
+  </select>
+
+  <button class="btn" onclick="savePost()">SAVE POST</button>
+  <button class="btn" onclick="clearForm()">CLEAR FORM</button>
+  <button class="btn" onclick="logout()">LOGOUT</button>
+
+  <h3 style="margin-top:30px">MANAGE POSTS</h3>
+  <div id="managePosts"></div>
+ </div>
+</section>
+
+<footer>
+ <p>HISTORY ARCHIVE © 2026</p>
+ <p>POWERED BY SAHRIYAR</p>
+ <p>EXPLORE THE PAST · UNDERSTAND THE PRESENT</p>
+</footer>
+
+<script>
+const SUPABASE_URL="https://iukwbhxixspnpgujvjke.supabase.co";
+const SUPABASE_KEY="sb_publishable_kX4J-qaISPYWqW3Dwj7wIg_Z3zxbnPD";
+const ADMIN_UID="995256e5-be66-4118-80bb-6ba6ae5d0449";
+
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+let allPosts=[];
+let currentCategory="All";
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function safeURL(v){
+ try{
+  const u=new URL(v);
+  return ["https:","http:"].includes(u.protocol)?u.href:"";
+ }catch(e){return "";}
+}
+
+async function loadPosts(){
+ const {data,error}=await db.from("history_posts")
+  .select("*").eq("status","published")
+  .order("created_at",{ascending:false});
+
+ if(error){
+  document.getElementById("posts").textContent="Unable to load posts.";
+  return;
+ }
+ allPosts=data||[];
+ renderPosts();
+}
+
+function renderPosts(){
+ const term=document.getElementById("search").value.toLowerCase();
+
+ const filtered=allPosts.filter(p=>{
+  let categoryMatch=currentCategory==="All";
+  if(currentCategory==="Images")categoryMatch=p.media_type==="image";
+  else if(currentCategory==="Videos")categoryMatch=p.media_type==="video";
+  else if(currentCategory!=="All")categoryMatch=p.category===currentCategory;
+
+  return categoryMatch &&
+   ((p.title||"").toLowerCase().includes(term)||
+    (p.content||"").toLowerCase().includes(term));
+ });
+
+ const area=document.getElementById("posts");
+
+ if(!filtered.length){
+  area.textContent="No posts available in this category yet.";
+  return;
+ }
+
+ area.innerHTML=filtered.map(p=>{
+  let media="";
+  if(p.media_type==="image"&&safeURL(p.image_url))
+   media=`<img src="${esc(safeURL(p.image_url))}" alt="Historical image">`;
+  if(p.media_type==="video"&&safeURL(p.video_url))
+   media=`<video controls src="${esc(safeURL(p.video_url))}"></video>`;
+
+  return `<article class="post">${media}
+   <div class="post-body">
+    <span class="post-category">${esc(p.category)}</span>
+    <h3>${esc(p.title)}</h3>
+    <p>${esc(p.content)}</p>
+   </div></article>`;
+ }).join("");
+}
+
+function showCategory(c){
+ currentCategory=c;
+ document.getElementById("postTitle").textContent=
+  c==="All"?"LATEST HISTORICAL POSTS":c.toUpperCase();
+ document.getElementById("search").value="";
+ renderPosts();
+ document.getElementById("history").scrollIntoView({behavior:"smooth"});
+}
+
+function openAdmin(){
+ document.getElementById("adminPanel").style.display="block";
+ document.getElementById("adminPanel").scrollIntoView({behavior:"smooth"});
+}
+
+async function login(){
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ const {data,error}=await db.auth.signInWithPassword({email,password});
+
+ if(error){alert("Login failed: "+error.message);return;}
+
+ if(data.user.id!==ADMIN_UID){
+  await db.auth.signOut();
+  alert("Access denied.");
+  return;
+ }
+ await checkAdmin();
+}
+
+async function checkAdmin(){
+ const {data:{user}}=await db.auth.getUser();
+ const ok=!!user&&user.id===ADMIN_UID;
+
+ document.getElementById("loginBox").style.display=ok?"none":"block";
+ document.getElementById("postBox").style.display=ok?"block":"none";
+
+ if(ok)loadManagePosts();
+}
+
+async function logout(){
+ await db.auth.signOut();
+ location.reload();
+}
+
+function clearForm(){
+ ["postId","title","content","imageUrl","videoUrl"].forEach(id=>
+  document.getElementById(id).value=""
+ );
+ document.getElementById("status").value="published";
+}
+
+async function savePost(){
+ const {data:{user}}=await db.auth.getUser();
+ if(!user||user.id!==ADMIN_UID){alert("Access denied.");return;}
+
+ const id=document.getElementById("postId").value;
+ const mediaType=document.getElementById("mediaType").value;
+ const imageUrl=document.getElementById("imageUrl").value.trim();
+ const videoUrl=document.getElementById("videoUrl").value.trim();
+
+ if(imageUrl&&!safeURL(imageUrl)){alert("Invalid image URL.");return;}
+ if(videoUrl&&!safeURL(videoUrl)){alert("Invalid video URL.");return;}
+
+ const status=document.getElementById("status").value;
+
+ const post={
+  title:document.getElementById("title").value.trim(),
+  content:document.getElementById("content").value.trim(),
+  category:document.getElementById("category").value,
+  media_type:mediaType,
+  image_url:imageUrl||null,
+  video_url:videoUrl||null,
+  status:status,
+  published_at:status==="published"?new Date().toISOString():null
+ };
+
+ if(!post.title){alert("Enter a post title.");return;}
+
+ const result=id
+  ?await db.from("history_posts").update(post).eq("id",id)
+  :await db.from("history_posts").insert(post);
+
+ if(result.error){alert("Error: "+result.error.message);return;}
+
+ alert("Post saved successfully.");
+ clearForm();
+ await loadPosts();
+ await loadManagePosts();
+}
+
+async function loadManagePosts(){
+ const {data,error}=await db.from("history_posts")
+  .select("*").order("created_at",{ascending:false});
+
+ const area=document.getElementById("managePosts");
+ if(error){area.textContent="Unable to load posts.";return;}
+
+ area.innerHTML=(data||[]).map(p=>`
+  <div class="manage-item">
+   <h3>${esc(p.title)}</h3>
+   <p>Status: ${esc(p.status)}</p>
+   <button class="btn" onclick="editPost('${p.id}')">EDIT</button>
+   <button class="btn" onclick="deletePost('${p.id}')">DELETE</button>
+  </div>
+ `).join("");
+}
+
+async function editPost(id){
+ const {data,error}=await db.from("history_posts")
+  .select("*").eq("id",id).single();
+
+ if(error){alert(error.message);return;}
+
+ document.getElementById("postId").value=data.id;
+ document.getElementById("title").value=data.title;
+ document.getElementById("content").value=data.content;
+ document.getElementById("category").value=data.category;
+ document.getElementById("mediaType").value=data.media_type;
+ document.getElementById("imageUrl").value=data.image_url||"";
+ document.getElementById("videoUrl").value=data.video_url||"";
+ document.getElementById("status").value=data.status;
+ document.getElementById("adminPanel").scrollIntoView({behavior:"smooth"});
+}
+
+async function deletePost(id){
+ if(!confirm("Are you sure you want to delete this post?"))return;
+
+ const {error}=await db.from("history_posts").delete().eq("id",id);
+ if(error){alert(error.message);return;}
+
+ await loadPosts();
+ await loadManagePosts();
+}
+
+checkAdmin();
+loadPosts();
+</script>
+
+</body>
+  </html>
